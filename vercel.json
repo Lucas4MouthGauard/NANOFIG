@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "name": "nanofig",
   "framework": "nextjs",
   "buildCommand": "npm run build",
   "devCommand": "npm run dev",
@@ -12,7 +13,8 @@
     }
   },
   "env": {
-    "GEMINI_API_KEY": "@gemini_api_key"
+    "GEMINI_API_KEY": "@gemini_api_key",
+    "NODE_ENV": "production"
   },
   "git": {
     "deploymentEnabled": {
@@ -23,6 +25,12 @@
     {
       "src": "package.json",
       "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/"
     }
   ]
 }
