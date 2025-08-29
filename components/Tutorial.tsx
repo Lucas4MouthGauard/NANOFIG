@@ -7,43 +7,27 @@ import { XMarkIcon, CheckIcon, ArrowRightIcon } from '@heroicons/react/24/outlin
 const tutorialSteps = [
   {
     id: 1,
-    title: "Welcome to AI Generator",
-    description: "Learn how to transform your photos into stunning 3D character figures in just a few simple steps.",
+    title: "Welcome to NANOFIG",
+    description: "Learn how to transform your photos into stunning 3D character figures with AI-powered generation.",
     image: "/NANOFIG.png",
     alt: "Original photo example",
-    content: "This is your original photo - the starting point for creating amazing character figures."
+    content: "Upload any photo and watch as our AI transforms it into a beautiful 3D character figure."
   },
   {
     id: 2,
-    title: "Upload Your Photo",
-    description: "Drag and drop or click to upload any photo you want to transform.",
+    title: "Choose Your Style & Generate",
+    description: "Select from 4 artistic styles and customize your prompts with Gemini AI enhancement.",
     image: "/NANOFIG.png",
-    alt: "Upload step",
-    content: "Supported formats: JPG, PNG, GIF, WEBP (up to 10MB)"
+    alt: "Style and generation",
+    content: "Realistic, Anime, Pixel Art, or Commercial styles - each with unique characteristics and AI-optimized prompts."
   },
   {
     id: 3,
-    title: "Choose Your Style",
-    description: "Select from 4 different artistic styles to match your vision.",
-    image: "/NANOFIG.png",
-    alt: "Style selection",
-    content: "Realistic, Anime, Pixel Art, or Commercial - each with unique characteristics."
-  },
-  {
-    id: 4,
-    title: "Customize Your Prompt",
-    description: "Use our AI-optimized templates or create your own custom prompts.",
-    image: "/NANOFIG.png",
-    alt: "Prompt customization",
-    content: "Let Gemini AI enhance your prompts for better results."
-  },
-  {
-    id: 5,
-    title: "Generate Your Figure",
-    description: "Watch as our AI transforms your photo into a stunning 3D character figure.",
+    title: "Your AI Figure is Ready!",
+    description: "Download, share, and create more stunning 3D character figures.",
     image: "/NANOFIG2.png",
     alt: "Generated result",
-    content: "Your AI-generated character figure is ready! Download, share, or create more."
+    content: "Your AI-generated character figure is ready! Professional quality with Blender integration and multiple export options."
   }
 ]
 

@@ -50,6 +50,20 @@ export default function Header({ onTutorialOpen }: HeaderProps) {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-4">
+          <a
+            href="https://x.com/NANO_FIG"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+          >
+            <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+            X
+          </a>
+          <span className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-primary-600 bg-primary-50 rounded-lg">
+            $NANOFIG
+          </span>
           <button
             onClick={onTutorialOpen}
             className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-primary-600 hover:text-primary-700 hover:bg-primary-50 rounded-lg transition-colors"
@@ -101,6 +115,17 @@ export default function Header({ onTutorialOpen }: HeaderProps) {
                   ))}
                 </div>
                 <div className="py-6 space-y-3">
+                  <a
+                    href="https://x.com/NANO_FIG"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    X
+                  </a>
+                  <span className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-primary-600 bg-primary-50">
+                    $NANOFIG
+                  </span>
                   <button
                     onClick={() => {
                       onTutorialOpen()
