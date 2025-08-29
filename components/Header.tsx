@@ -51,7 +51,7 @@ export default function Header({ onTutorialOpen }: HeaderProps) {
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-4">
           <a
-            href="https://www.nanofig.fyi/"
+            href="https://x.com/NANOFIG_sol"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
@@ -116,7 +116,7 @@ export default function Header({ onTutorialOpen }: HeaderProps) {
                 </div>
                 <div className="py-6 space-y-3">
                   <a
-                    href="https://www.nanofig.fyi/"
+                    href="https://x.com/NANOFIG_sol"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
