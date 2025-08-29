@@ -55,7 +55,7 @@ export default function Home() {
               )}
             </div>
             <div className="space-y-6">
-              {generatedImage && (
+              {generatedImage && uploadedImage && (
                 <GeneratedImage 
                   imageUrl={generatedImage}
                   originalImage={uploadedImage}

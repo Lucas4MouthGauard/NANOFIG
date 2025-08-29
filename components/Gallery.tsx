@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { HeartIcon, DownloadIcon, ShareIcon } from '@heroicons/react/24/outline'
+import { HeartIcon, ArrowDownTrayIcon, ShareIcon } from '@heroicons/react/24/outline'
 
 const sampleImages = [
   {
@@ -85,7 +85,7 @@ export default function Gallery() {
                     <HeartIcon className="h-5 w-5 text-white" />
                   </button>
                   <button className="p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors">
-                    <DownloadIcon className="h-5 w-5 text-white" />
+                    <ArrowDownTrayIcon className="h-5 w-5 text-white" />
                   </button>
                   <button className="p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors">
                     <ShareIcon className="h-5 w-5 text-white" />
@@ -111,7 +111,7 @@ export default function Gallery() {
                     {item.likes}
                   </span>
                   <span className="flex items-center gap-1">
-                    <DownloadIcon className="h-4 w-4" />
+                    <ArrowDownTrayIcon className="h-4 w-4" />
                     {item.downloads}
                   </span>
                 </div>
