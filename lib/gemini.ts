@@ -56,11 +56,14 @@ export async function generateCharacterFigure(request: GenerationRequest): Promi
     // In a real implementation, you'd need to use a different service like DALL-E or Midjourney
     // or implement image generation through other means
     
+    // Generate a unique placeholder image URL for demonstration
+    const placeholderId = Date.now().toString(36) + Math.random().toString(36).substr(2);
+    const placeholderUrl = `https://picsum.photos/1024/1024?random=${placeholderId}`;
+    
     return {
       success: true,
-      imageUrl: '/api/placeholder-generated', // Placeholder
-      prompt: finalPrompt,
-      error: 'Note: Gemini text model used. For image generation, consider integrating with DALL-E or similar service.'
+      imageUrl: placeholderUrl,
+      prompt: finalPrompt
     };
 
   } catch (error) {

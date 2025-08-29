@@ -5,9 +5,14 @@ import Footer from '@/components/Footer'
 import { motion } from 'framer-motion'
 
 export default function About() {
+  const handleTutorialOpen = () => {
+    // 关于页面不需要教程功能，但需要传递函数
+    console.log('Tutorial requested from About page')
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      <Header />
+      <Header onTutorialOpen={handleTutorialOpen} />
       <main className="pt-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <motion.div

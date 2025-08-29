@@ -1,21 +1,30 @@
 'use client'
 
 import { useState } from 'react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon, QuestionMarkCircleIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
   { name: 'Home', href: '#home' },
   { name: 'About', href: '#about' },
 ]
 
-export default function Header() {
+interface HeaderProps {
+  onTutorialOpen: () => void
+}
+
+export default function Header({ onTutorialOpen }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
     <header className="bg-white/80 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
+          <a href="#" className="-m-1.5 p-1.5 flex items-center gap-3">
+            <img 
+              src="/NANOFIG2.png" 
+              alt="AI Generator Logo" 
+              className="w-10 h-10 rounded-lg object-cover"
+            />
             <span className="text-2xl font-bold text-gradient">AI Generator</span>
           </a>
         </div>
@@ -40,7 +49,14 @@ export default function Header() {
             </a>
           ))}
         </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-4">
+          <button
+            onClick={onTutorialOpen}
+            className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-primary-600 hover:text-primary-700 hover:bg-primary-50 rounded-lg transition-colors"
+          >
+            <QuestionMarkCircleIcon className="h-5 w-5" />
+            Tutorial
+          </button>
           <a href="#upload" className="text-sm font-semibold leading-6 text-gray-900 hover:text-primary-600 transition-colors">
             Get Started <span aria-hidden="true">→</span>
           </a>
@@ -53,7 +69,12 @@ export default function Header() {
           <div className="fixed inset-0 z-50" />
           <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
-              <a href="#" className="-m-1.5 p-1.5">
+              <a href="#" className="-m-1.5 p-1.5 flex items-center gap-3">
+                <img 
+                  src="/NANOFIG2.png" 
+                  alt="AI Generator Logo" 
+                  className="w-8 h-8 rounded-lg object-cover"
+                />
                 <span className="text-xl font-bold text-gradient">AI Generator</span>
               </a>
               <button
@@ -79,7 +100,16 @@ export default function Header() {
                     </a>
                   ))}
                 </div>
-                <div className="py-6">
+                <div className="py-6 space-y-3">
+                  <button
+                    onClick={() => {
+                      onTutorialOpen()
+                      setMobileMenuOpen(false)
+                    }}
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 w-full text-left"
+                  >
+                    Tutorial
+                  </button>
                   <a
                     href="#upload"
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
