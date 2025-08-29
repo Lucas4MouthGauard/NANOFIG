@@ -15,19 +15,23 @@ export default function Home() {
   const [generatedImage, setGeneratedImage] = useState<string | null>(null)
   const [selectedStyle, setSelectedStyle] = useState<string>('realistic')
   const [isGenerating, setIsGenerating] = useState(false)
+  const [generationPrompt, setGenerationPrompt] = useState<string>('')
 
   const handleImageUpload = (imageUrl: string) => {
     setUploadedImage(imageUrl)
     setGeneratedImage(null)
+    setGenerationPrompt('')
   }
 
-  const handleGenerate = async (prompt: string) => {
+  const handleGenerate = async (prompt: string, imageUrl: string) => {
     setIsGenerating(true)
-    // Simulate AI generation process
+    setGenerationPrompt(prompt)
+    
+    // Simulate processing time
     setTimeout(() => {
-      setGeneratedImage('/api/placeholder-image') // This would be replaced with actual AI generation
+      setGeneratedImage(imageUrl)
       setIsGenerating(false)
-    }, 3000)
+    }, 2000)
   }
 
   return (
@@ -59,6 +63,7 @@ export default function Home() {
                 <GeneratedImage 
                   imageUrl={generatedImage}
                   originalImage={uploadedImage}
+                  prompt={generationPrompt}
                 />
               )}
             </div>

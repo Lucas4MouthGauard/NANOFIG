@@ -6,18 +6,21 @@ import {
   ArrowDownTrayIcon, 
   ShareIcon, 
   HeartIcon,
-  EyeIcon
+  EyeIcon,
+  DocumentTextIcon
 } from '@heroicons/react/24/outline'
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/24/solid'
 
 interface GeneratedImageProps {
   imageUrl: string
   originalImage: string
+  prompt?: string
 }
 
-export default function GeneratedImage({ imageUrl, originalImage }: GeneratedImageProps) {
+export default function GeneratedImage({ imageUrl, originalImage, prompt }: GeneratedImageProps) {
   const [isLiked, setIsLiked] = useState(false)
   const [showComparison, setShowComparison] = useState(false)
+  const [showPrompt, setShowPrompt] = useState(false)
 
   const handleDownload = () => {
     const link = document.createElement('a')
@@ -51,8 +54,16 @@ export default function GeneratedImage({ imageUrl, originalImage }: GeneratedIma
           <h3 className="text-lg font-semibold text-gray-900">Generated Result</h3>
           <div className="flex items-center gap-2">
             <button
+              onClick={() => setShowPrompt(!showPrompt)}
+              className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+              title="Show generation prompt"
+            >
+              <DocumentTextIcon className="h-4 w-4" />
+            </button>
+            <button
               onClick={() => setShowComparison(!showComparison)}
               className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+              title="Compare with original"
             >
               <EyeIcon className="h-4 w-4" />
             </button>
@@ -63,6 +74,7 @@ export default function GeneratedImage({ imageUrl, originalImage }: GeneratedIma
                   ? 'text-red-500 hover:text-red-600 hover:bg-red-50' 
                   : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
               }`}
+              title={isLiked ? 'Unlike' : 'Like'}
             >
               {isLiked ? <HeartIconSolid className="h-4 w-4" /> : <HeartIcon className="h-4 w-4" />}
             </button>
@@ -74,6 +86,22 @@ export default function GeneratedImage({ imageUrl, originalImage }: GeneratedIma
       </div>
 
       <div className="space-y-4">
+        {/* Prompt display */}
+        {prompt && showPrompt && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            className="p-4 bg-blue-50 border border-blue-200 rounded-lg"
+          >
+            <h4 className="text-sm font-medium text-blue-900 mb-2 flex items-center gap-2">
+              <DocumentTextIcon className="h-4 w-4" />
+              Generation Prompt (Gemini AI)
+            </h4>
+            <p className="text-sm text-blue-800 leading-relaxed">{prompt}</p>
+          </motion.div>
+        )}
+
+        {/* Image display */}
         {showComparison ? (
           <div className="grid grid-cols-2 gap-4">
             <div>
@@ -114,6 +142,7 @@ export default function GeneratedImage({ imageUrl, originalImage }: GeneratedIma
           </motion.div>
         )}
 
+        {/* Action buttons */}
         <div className="grid grid-cols-2 gap-3">
           <button
             onClick={handleDownload}
@@ -131,12 +160,13 @@ export default function GeneratedImage({ imageUrl, originalImage }: GeneratedIma
           </button>
         </div>
 
+        {/* Image details */}
         <div className="p-4 bg-gray-50 rounded-lg">
-          <h4 className="text-sm font-medium text-gray-900 mb-2">Image Details</h4>
+          <h4 className="text-sm font-medium text-gray-900 mb-2">Generation Details</h4>
           <div className="grid grid-cols-2 gap-4 text-xs text-gray-600">
+            <div><span className="font-medium">Model:</span> Gemini nano-banana</div>
             <div><span className="font-medium">Resolution:</span> 1024x1024</div>
             <div><span className="font-medium">Format:</span> PNG</div>
-            <div><span className="font-medium">Style:</span> AI Generated</div>
             <div><span className="font-medium">Quality:</span> High</div>
           </div>
         </div>

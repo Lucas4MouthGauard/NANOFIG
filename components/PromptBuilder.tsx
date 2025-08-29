@@ -2,12 +2,13 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { SparklesIcon, PaperAirplaneIcon } from '@heroicons/react/24/outline'
+import { SparklesIcon, PaperAirplaneIcon, LightBulbIcon } from '@heroicons/react/24/outline'
+import toast from 'react-hot-toast'
 
 interface PromptBuilderProps {
   uploadedImage: string
   selectedStyle: string
-  onGenerate: (prompt: string) => void
+  onGenerate: (prompt: string, imageUrl: string) => void
   isGenerating: boolean
 }
 
@@ -26,10 +27,69 @@ export default function PromptBuilder({
 }: PromptBuilderProps) {
   const [customPrompt, setCustomPrompt] = useState('')
   const [useCustomPrompt, setUseCustomPrompt] = useState(false)
+  const [isEnhancing, setIsEnhancing] = useState(false)
 
-  const handleGenerate = () => {
+  const handleGenerate = async () => {
     const prompt = useCustomPrompt ? customPrompt : stylePrompts[selectedStyle as keyof typeof stylePrompts]
-    onGenerate(prompt)
+    
+    try {
+      const response = await fetch('/api/generate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          image: uploadedImage,
+          style: selectedStyle,
+          customPrompt: useCustomPrompt ? customPrompt : undefined
+        })
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        onGenerate(prompt, result.imageUrl)
+        toast.success('Image generated successfully!')
+      } else {
+        toast.error(result.error || 'Generation failed')
+      }
+    } catch (error) {
+      console.error('Generation error:', error)
+      toast.error('Failed to generate image. Please try again.')
+    }
+  }
+
+  const enhancePromptWithGemini = async () => {
+    if (!uploadedImage) return
+    
+    setIsEnhancing(true)
+    try {
+      const response = await fetch('/api/enhance-prompt', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          image: uploadedImage,
+          basePrompt: customPrompt || stylePrompts[selectedStyle as keyof typeof stylePrompts]
+        })
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        setCustomPrompt(result.enhancedPrompt)
+        setUseCustomPrompt(true)
+        toast.success('Prompt enhanced with Gemini AI!')
+      } else {
+        toast.error('Failed to enhance prompt')
+      }
+    } catch (error) {
+      console.error('Enhancement error:', error)
+      toast.error('Failed to enhance prompt')
+    } finally {
+      setIsEnhancing(false)
+    }
   }
 
   const resetPrompt = () => {
@@ -42,10 +102,10 @@ export default function PromptBuilder({
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-2">
           <SparklesIcon className="h-5 w-5 text-primary-600" />
-          <h3 className="text-lg font-semibold text-gray-900">Prompt Builder</h3>
+          <h3 className="text-lg font-semibold text-gray-900">Prompt Builder with Gemini AI</h3>
         </div>
         <p className="text-sm text-gray-600">
-          Customize your generation prompt or use our optimized templates
+          Customize your generation prompt or use our AI-optimized templates
         </p>
       </div>
 
@@ -105,9 +165,19 @@ export default function PromptBuilder({
             exit={{ opacity: 0, height: 0 }}
             className="space-y-3"
           >
-            <label htmlFor="custom-prompt" className="block text-sm font-medium text-gray-700">
-              Your Custom Prompt
-            </label>
+            <div className="flex items-center justify-between">
+              <label htmlFor="custom-prompt" className="block text-sm font-medium text-gray-700">
+                Your Custom Prompt
+              </label>
+              <button
+                onClick={enhancePromptWithGemini}
+                disabled={isEnhancing}
+                className="flex items-center gap-1 text-xs text-primary-600 hover:text-primary-700 font-medium"
+              >
+                <LightBulbIcon className="h-3 w-3" />
+                {isEnhancing ? 'Enhancing...' : 'Enhance with Gemini'}
+              </button>
+            </div>
             <textarea
               id="custom-prompt"
               rows={4}
@@ -157,19 +227,19 @@ export default function PromptBuilder({
           {isGenerating ? (
             <>
               <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-              Generating...
+              Generating with Gemini...
             </>
           ) : (
             <>
               <PaperAirplaneIcon className="h-4 w-4" />
-              Generate Image
+              Generate with Gemini AI
             </>
           )}
         </button>
 
         <div className="text-center">
           <p className="text-xs text-gray-500">
-            Generation typically takes 2-3 minutes
+            Powered by Google Gemini nano-banana model
           </p>
         </div>
       </div>
