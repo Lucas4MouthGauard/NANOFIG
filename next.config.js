@@ -4,7 +4,7 @@ const nextConfig = {
     domains: ['localhost', 'picsum.photos'],
     unoptimized: true,
   },
-  output: 'standalone',
+  // 移除 standalone 输出，与 Vercel 兼容
 }
 
 module.exports = nextConfig
