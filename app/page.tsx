@@ -7,7 +7,6 @@ import ImageUpload from '@/components/ImageUpload'
 import PromptBuilder from '@/components/PromptBuilder'
 import StyleSelector from '@/components/StyleSelector'
 import GeneratedImage from '@/components/GeneratedImage'
-import Gallery from '@/components/Gallery'
 import Footer from '@/components/Footer'
 
 export default function Home() {
@@ -68,7 +67,6 @@ export default function Home() {
               )}
             </div>
           </div>
-          <Gallery />
         </div>
       </main>
       <Footer />

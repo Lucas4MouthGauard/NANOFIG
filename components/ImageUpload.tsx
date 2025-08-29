@@ -38,7 +38,7 @@ export default function ImageUpload({ onImageUpload }: ImageUploadProps) {
   }
 
   return (
-    <div className="card">
+    <div id="upload" className="card">
       <div className="text-center">
         <h3 className="text-lg font-semibold text-gray-900 mb-4">Upload Your Photo</h3>
         <p className="text-sm text-gray-600 mb-6">

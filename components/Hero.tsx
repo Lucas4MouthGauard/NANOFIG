@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 export default function Hero() {
   return (
-    <div className="relative isolate overflow-hidden bg-white">
+    <div id="home" className="relative isolate overflow-hidden bg-white">
       <div className="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-40">
         <div className="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8">
           <motion.div
@@ -38,8 +38,8 @@ export default function Hero() {
               >
                 Start Creating
               </a>
-              <a href="#gallery" className="text-sm font-semibold leading-6 text-gray-900 hover:text-primary-600 transition-colors">
-                View Gallery <span aria-hidden="true">→</span>
+              <a href="#about" className="text-sm font-semibold leading-6 text-gray-900 hover:text-primary-600 transition-colors">
+                Learn More <span aria-hidden="true">→</span>
               </a>
             </div>
           </motion.div>
